@@ -5,6 +5,11 @@ import marshal
 
 app = Flask(__name__)
 
+@app.after_request
+def allow_cross_origin_requests(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
 @app.route("/")
 def home():
     return render("home.html")
